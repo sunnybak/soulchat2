@@ -1,5 +1,6 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 
 declare module 'next-auth' {
   interface Session {
@@ -14,7 +15,10 @@ export const {
   handlers: { GET, POST },
   auth
 } = NextAuth({
-  providers: [GitHub],
+  providers: [GitHub, GoogleProvider({
+            clientId: process.env.GOOGLE_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  })],
   callbacks: {
     jwt({ token, profile }) {
       if (profile) {
@@ -24,8 +28,8 @@ export const {
       return token
     },
     session: ({ session, token }) => {
-      if (session?.user && token?.id) {
-        session.user.id = String(token.id)
+      if (session?.user) {
+        session.user.id = String('token.id')
       }
       return session
     },

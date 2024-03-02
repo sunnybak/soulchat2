@@ -28,11 +28,11 @@ export function UserMenu({ user }: UserMenuProps) {
     <div className="flex items-center justify-between">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="pl-0">
+          <Button variant="outline" className="pl-2">
             {user?.image ? (
               <Image
                 className="size-6 transition-opacity duration-300 rounded-full select-none ring-1 ring-zinc-100/10 hover:opacity-80"
-                src={user?.image ? `${user.image}&s=60` : ''}
+                src={user?.image ? `${user.image}` : ''}
                 alt={user.name ?? 'Avatar'}
                 height={48}
                 width={48}
@@ -51,17 +51,6 @@ export function UserMenu({ user }: UserMenuProps) {
             <div className="text-xs text-zinc-500">{user?.email}</div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <a
-              href="https://vercel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-between w-full text-xs"
-            >
-              Vercel Homepage
-              <IconExternalLink className="size-3 ml-auto" />
-            </a>
-          </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
               signOut({
