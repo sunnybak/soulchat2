@@ -4,6 +4,7 @@ import { type UseChatHelpers } from 'ai/react'
 import { shareChat } from '@/app/actions'
 import { Button } from '@/components/ui/button'
 import { PromptForm } from '@/components/prompt-form'
+import { ChatTools } from '@/components/chat-tools'
 import { ButtonScrollToBottom } from '@/components/button-scroll-to-bottom'
 import { IconRefresh, IconShare, IconStop } from '@/components/ui/icons'
 import { FooterText } from '@/components/footer'
@@ -21,7 +22,9 @@ export interface ChatPanelProps
     | 'setInput'
   > {
   id?: string
-  title?: string
+  title?: string,
+  setTool: any,
+  tool: string | null,
 }
 
 export function ChatPanel({
@@ -33,9 +36,19 @@ export function ChatPanel({
   reload,
   input,
   setInput,
-  messages
+  messages,
+  setTool,
+  tool
 }: ChatPanelProps) {
-  const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
+  const [shareDialogOpen, setShareDialogOpen] = React.useState(false);
+
+  const onChatSubmit = async (value: string) => {
+    await append({
+      id,
+      content: value,
+      role: 'user'
+    })
+  };
 
   return (
     <div className="fixed inset-x-0 bottom-0 w-full bg-gradient-to-b from-muted/30 from-0% to-muted/30 to-50% animate-in duration-300 ease-in-out dark:from-background/10 dark:from-10% dark:to-background/80 peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
@@ -97,7 +110,8 @@ export function ChatPanel({
             setInput={setInput}
             isLoading={isLoading}
           />
-          <FooterText className="hidden sm:block" />
+          <ChatTools messages={messages} input={input} setInput={setInput} tool={tool} setTool={setTool} onChatSubmit={onChatSubmit} />
+          {/* <FooterText className="hidden sm:block" /> */}
         </div>
       </div>
     </div>

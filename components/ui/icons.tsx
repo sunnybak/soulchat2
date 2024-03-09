@@ -3,6 +3,7 @@
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
+import Image from 'next/image';
 
 function IconNextChat({
   className,
@@ -103,6 +104,20 @@ function IconOpenAI({ className, ...props }: React.ComponentProps<'svg'>) {
     </svg>
   )
 }
+
+function IconSoulChat(props: React.ComponentProps<'img'>) {
+  // return the icon from the public folder. File name is soulchat.png
+  return (
+      <Image
+        src="/soulchat.png"
+        alt="SoulChat"
+        width={40}
+        height={40}
+      />
+  )
+}
+
+
 
 function IconVercel({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
@@ -503,5 +518,6 @@ export {
   IconShare,
   IconUsers,
   IconExternalLink,
-  IconChevronUpDown
+  IconChevronUpDown,
+  IconSoulChat,
 }
