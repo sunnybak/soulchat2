@@ -25,6 +25,7 @@ export interface ChatPanelProps
   title?: string,
   setTool: any,
   tool: string | null,
+  onChatSubmit: any
 }
 
 export function ChatPanel({
@@ -38,17 +39,10 @@ export function ChatPanel({
   setInput,
   messages,
   setTool,
-  tool
+  tool,
+  onChatSubmit
 }: ChatPanelProps) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false);
-
-  const onChatSubmit = async (value: string) => {
-    await append({
-      id,
-      content: value,
-      role: 'user'
-    })
-  };
 
   return (
     <div className="fixed inset-x-0 bottom-0 w-full bg-gradient-to-b from-muted/30 from-0% to-muted/30 to-50% animate-in duration-300 ease-in-out dark:from-background/10 dark:from-10% dark:to-background/80 peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
@@ -67,10 +61,10 @@ export function ChatPanel({
           ) : (
             messages?.length >= 2 && (
               <div className="flex space-x-2">
-                <Button variant="outline" onClick={() => reload()}>
+                {/* <Button variant="outline" onClick={() => reload()}>
                   <IconRefresh className="mr-2" />
                   Regenerate response
-                </Button>
+                </Button> */}
                 {id && title ? (
                   <>
                     <Button

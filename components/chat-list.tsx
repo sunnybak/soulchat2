@@ -16,6 +16,7 @@ export function ChatList({ messages, profilePic }: ChatList) {
   return (
     <div className="relative mx-auto max-w-2xl px-4">
       {messages.map((message, index) => (
+        message.role !== 'system' &&
         <div key={index}>
           <ChatMessage message={message} profilePic={profilePic} />
           {index < messages.length - 1 && (

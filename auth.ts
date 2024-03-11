@@ -29,7 +29,7 @@ export const {
     },
     session: ({ session, token }) => {
       if (session?.user) {
-        session.user.id = String('token.id')
+        session.user.id = session.user?.email as string
       }
       return session
     },

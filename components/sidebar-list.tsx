@@ -32,8 +32,8 @@ export async function SidebarList({ userId }: SidebarListProps) {
 
       {/* <div className="border-t border-muted-foreground dark:border-muted-foreground" /> */}
       <div className="flex flex-col items-center justify-between p-4">
-          <p> Instruction 1 </p>
-          <p> Instruction 2 </p>
+          <p> Analyze </p>
+          <p> Dig deeper </p>
       </div>
       <div className="flex items-center justify-between p-4">
         <ThemeToggle />

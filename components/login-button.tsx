@@ -21,7 +21,7 @@ export function LoginButton({
   const [isLoading, setIsLoading] = React.useState(false)
   return (
     <Button
-      variant="outline"
+      variant="default"
       onClick={() => {
         setIsLoading(true)
         // next-auth signIn() function doesn't work yet at Edge Runtime due to usage of BroadcastChannel

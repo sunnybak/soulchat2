@@ -25,9 +25,11 @@ export async function POST(req: Request) {
 
   // get the system prompt
   let sysPrompt = getSysPrompt(name);
+  let model = 'gpt-3.5-turbo-0125'
   if (tool) {
     const toolPrompt = getToolPrompts(tool, name);
     messages.push({ role: 'system', content: toolPrompt })
+    model = 'gpt-4'
   } else {
     messages.unshift({ role: 'system', content: sysPrompt });
   }
@@ -46,7 +48,7 @@ export async function POST(req: Request) {
   }
 
   const res = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: model,
     messages,
     temperature: 0.7,
     stream: true

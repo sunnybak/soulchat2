@@ -1,8 +1,16 @@
 import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
+import { auth } from '@/auth'
+import { notFound, redirect } from 'next/navigation'
 
-export default function IndexPage() {
-  const id = nanoid()
+export default async function IndexPage() {
+  const id = nanoid();
 
-  return <Chat id={id} />
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect(`/sign-in?next=/chat/${id}`)
+  }
+
+  return <Chat id={id} profileImage={session?.user?.image}/>
 }

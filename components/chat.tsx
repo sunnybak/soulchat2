@@ -63,17 +63,26 @@ export function Chat({ id, initialMessages, className, profileImage }: ChatProps
           window.history.pushState({}, '', `/chat/${id}`)
         }
       }
+    });
+
+  const onChatSubmit = async (value: string) => {
+    await append({
+      id,
+      content: value,
+      role: 'user'
     })
+  };
+
   return (
     <>
       <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
         {messages.length ? (
           <>
-            <ChatList messages={messages} profilePic={profilePic}/> 
+            <ChatList messages={messages} profilePic={profilePic} />
             <ChatScrollAnchor trackVisibility={isLoading} />
           </>
         ) : (
-          <EmptyScreen setInput={setInput} />
+          <EmptyScreen setInput={setInput} onChatSubmit={onChatSubmit} />
         )}
       </div>
       <ChatPanel
@@ -87,6 +96,7 @@ export function Chat({ id, initialMessages, className, profileImage }: ChatProps
         setInput={setInput}
         setTool={setTool}
         tool={tool}
+        onChatSubmit={onChatSubmit}
       />
 
       <Dialog open={previewTokenDialog} onOpenChange={setPreviewTokenDialog}>

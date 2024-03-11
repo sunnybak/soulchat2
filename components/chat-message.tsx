@@ -31,8 +31,6 @@ export function ChatMessage({ message, profilePic, ...props }: ChatMessageProps)
         )}
       > */}
         {message.role === 'user' ? 
-        // <IconUser /> 
-        (
           profilePic ? <Image
           className="size-6 transition-opacity duration-300 rounded-full select-none ring-1 ring-zinc-100/10 hover:opacity-80"
           src={profilePic}
@@ -40,7 +38,6 @@ export function ChatMessage({ message, profilePic, ...props }: ChatMessageProps)
           height={40}
           width={40}
           /> : <IconUser />
-        )
         : <IconSoulChat />}
       {/* </div> */}
       <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
@@ -85,7 +82,7 @@ export function ChatMessage({ message, profilePic, ...props }: ChatMessageProps)
         >
           {message.content}
         </MemoizedReactMarkdown>
-        <ChatMessageActions message={message} />
+        {/* <ChatMessageActions message={message} /> */}
       </div>
     </div>
   )

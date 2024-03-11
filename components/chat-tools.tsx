@@ -96,7 +96,7 @@ export function ChatTools({
                         return (
                             <React.Fragment key={index}>
                                 <Button
-                                    variant="outline"
+                                    variant="secondary"
                                     type="submit"
                                     onClick={value => {
                                         setTool(tool);

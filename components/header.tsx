@@ -8,6 +8,7 @@ import {
   IconGitHub,
   IconNextChat,
   IconSeparator,
+  IconSoulChat,
   IconVercel
 } from '@/components/ui/icons'
 import { UserMenu } from '@/components/user-menu'
@@ -27,10 +28,10 @@ async function Sidebar() {
           <SidebarToggle />
         </>
       ) : (
-        <Link href="/" target="_blank" rel="nofollow">
-          <IconNextChat className="size-6 mr-2 dark:hidden" inverted />
-          <IconNextChat className="hidden size-6 mr-2 dark:block" />
-        </Link>
+        <>
+          <IconSoulChat />
+          <p>SoulChat</p>
+        </>
       )}
       {/* <div className="flex items-center">
         <IconSeparator className="size-6 text-muted-foreground/50" />
